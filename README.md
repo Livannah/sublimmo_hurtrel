@@ -54,3 +54,18 @@ git log
 ```
 composer install (ou composer update)
 ```
+
+## APACHE-PACK
+
+- package pour le support d'Apache
+- barre de débug / routing / .htaccess
+- dans le terminal :
+```
+composer require symfony/apache-pack
+```
+
+## CONTROLLER
+
+```
+php bin/console make:controller nom_du_controller
+```
