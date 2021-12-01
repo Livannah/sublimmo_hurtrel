@@ -25,3 +25,18 @@ git init
 git remote add origin lien_du_dépôt_GitHub
 ```
 - ajouter tous les fichiers :
+```
+git add *
+```
+- donner un nom au commit :
+```
+git commit -m "message_du_commit"
+```
+- récupérer les dernières modifications :
+```
+git pull origin main
+```
+- envoyer les modifications :
+```
+git push origin main
+```
