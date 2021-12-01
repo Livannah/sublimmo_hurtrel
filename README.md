@@ -40,3 +40,17 @@ git pull origin main
 ```
 git push origin main
 ```
+- voir la liste des commit (flèches haut et bas pour navoguer dans la liste, q pour quitter) :
+```
+git log
+```
+
+## RÉCUPÉRER UN PROJET
+
+- télécharger le zip ou faire un pull
+- recréer le fichier .env à la racine du projet (avec ses propres informations)
+- les infos importantes sont APP_ENV et DATABASE_URL (éventuellement MAILER_URL)
+- mettre à jour le projet (l'installer) :
+```
+composer install (ou composer update)
+```
