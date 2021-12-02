@@ -128,3 +128,7 @@ composer require fakerphp/faker
 ```
 php bin/console cache:clear
 ```
+- afficher sa version de Symfony :
+```
+php bin/console --version
+```

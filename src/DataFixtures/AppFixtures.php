@@ -24,7 +24,7 @@ class AppFixtures extends Fixture
         // $maison->setImg1('maison.jpg');
         // $manager->persist($maison);
 
-        $faker = Factory::create();
+        $faker = Factory::create('fr_FR');
 
         for ($i = 1; $i <= 10; $i++) {
             $maison = new Maison();
