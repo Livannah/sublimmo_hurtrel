@@ -54,6 +54,14 @@ git log
 ```
 composer install (ou composer update)
 ```
+- créer la base de données (si pas déjà fait) :
+```
+php bin/console doctrine:database:create
+```
+- créer les tables :
+```
+php bin/console doctrine:migrations:migrate
+```
 
 ## APACHE-PACK
 
