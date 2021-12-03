@@ -137,6 +137,17 @@ php bin/console debug:router
 php bin/console router:match /url_de_la_route
 ```
 
+## FORMULAIRE
+
+- créer un formulaire :
+```
+php bin/console make:form
+```
+- ajouter un bouton de validation au formulaire :
+```
+->add('valider', SubmitType::class)
+```
+
 ## COMMANDES IMPORTANTS
 
 - vider le cache :

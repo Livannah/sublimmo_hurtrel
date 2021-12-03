@@ -7,6 +7,7 @@ twig:
         contact_phone: '01.23.45.67.89'
         contact_zip: '12345'
         copyright: 'Copyright © 2021 - David HURTREL'
+    form_themes: ['bootstrap_5_layout.html.twig']
 
 when@test:
     twig:
