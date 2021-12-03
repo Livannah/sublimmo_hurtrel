@@ -62,6 +62,10 @@ php bin/console doctrine:database:create
 ```
 php bin/console doctrine:migrations:migrate
 ```
+- importer les "fausses" données :
+```
+php bin/console doctrine:fixtures:load
+```
 
 ## APACHE-PACK
 
@@ -120,6 +124,17 @@ php bin/console doctrine:fixtures:load --append
 - bundle pour générer de "fausses" données :
 ```
 composer require fakerphp/faker
+```
+
+## ROUTER
+
+- voir toutes les routes :
+```
+php bin/console debug:router
+```
+- vérifier si une route existe (et obtenir ses informations) :
+```
+php bin/console router:match /url_de_la_route
 ```
 
 ## COMMANDES IMPORTANTS
