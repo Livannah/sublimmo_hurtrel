@@ -30,7 +30,7 @@
                     <p><a href="{{ path('home') }}">Accueil</a></p>
                     <p><a href="{{ path('maisons') }}">Maisons</a></p>
                     <p><a href="#">Contact</a></p>
-                    <p><a href="#">Admin</a></p>
+                    <p><a href="{{ path('admin') }}">Admin</a></p>
                 </div>
                 <div class="col-4 my-auto">
                     <img src="{{ asset('img/logo.png') }}" alt="logo SUBL'IMMO" class="w-100">
@@ -53,6 +53,8 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('js/script.js') }}"></script>
+
         
         {% block javascripts %}{% endblock %}
 
