@@ -165,6 +165,13 @@ $this->addFlash('type_de_message', 'contenu_du_message');
 
 ## LOGIN
 
+- créer l'entité User :
+```
+php bin/console make:user
+```
+- migration
+- créer "l'authentification" :
+```
 
 
 ## COMMANDES IMPORTANTS
