@@ -62,9 +62,9 @@ class MaisonController extends AbstractController
             $manager = $managerRegistry->getManager(); // récupère le manager de Doctrine
             $manager->persist($house); // dit à Doctrine qu'on va vouloir sauvegarder en bdd
             $manager->flush(); // exécute la requête
+            $this->addFlash('success', 'La maison a bien été ajoutée'); // génère un message flash
             return $this->redirectToRoute('admin_maisons');
         }
-
         return $this->render('admin/maisonForm.html.twig', [
             'formulaire' => $form->createView() // création de la vue du formulaire et envoi à la vue (fichier)
         ]);
@@ -76,16 +76,7 @@ class MaisonController extends AbstractController
         $house = $maisonRepository->find($id); // récupère la maison grâce à l'id
         $form = $this->createForm(MaisonType::class, $house); // crée le formulaire prérempli avec la maison récupérée juste avant
         $form->handleRequest($request); // gestionnaire de requêtes HTTP
-
         if ($form->isSubmitted() && $form->isValid()) {
-
-
-            // vérifier s'il y a une img2 dans le formulaire
-                // non : garde l'ancienne
-                // oui : récupérer le nom de l'ancienne img2
-                    // s'il y en a une => supprimer
-                    // sinon => ajout
-
             $infoImg1 = $form['img1']->getData();
             $nomOldImg1 = $house->getImg1(); // récupère le nom de l'ancienne img1
             if ($infoImg1 !== null) { // vérifie si il y a une img1 dans le formulaire
@@ -99,7 +90,6 @@ class MaisonController extends AbstractController
             } else {
                 $house->setImg1($nomOldImg1); // re-définit le nom de l'img1 à mettre en bdd
             }
-
             $infoImg2 = $form['img2']->getData();
             $nomOldImg2 = $house->getImg2();
             if ($infoImg2 !== null) { // on a une img2 dans le formulaire
@@ -115,13 +105,12 @@ class MaisonController extends AbstractController
             } else { // on a pas d'img2 dans le formulaire
                 $house->setImg2($nomOldImg2);
             }
-
             $manager = $managerRegistry->getManager();
             $manager->persist($house);
             $manager->flush();
+            $this->addFlash('success', 'La maison a bien été modifiée');
             return $this->redirectToRoute('admin_maisons');
         }
-
         return $this->render('admin/maisonForm.html.twig', [
             'formulaire' => $form->createView()
         ]);
@@ -143,6 +132,7 @@ class MaisonController extends AbstractController
         $manager = $managerRegistry->getManager();
         $manager->remove($house);
         $manager->flush();
+        $this->addFlash('success', 'La maison a bien été supprimée');
         return $this->redirectToRoute('admin_maisons');
     }
 }

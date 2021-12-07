@@ -148,6 +148,25 @@ php bin/console make:form
 ->add('valider', SubmitType::class)
 ```
 
+## MESSAGES FLASH
+
+- dans un controller :
+```
+$this->addFlash('type_de_message', 'contenu_du_message');
+```
+- à l'endroit où l'on veut afficher les messages :
+```
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">{{ message }}</div>
+    {% endfor %}
+{% endfor %}
+```
+
+## LOGIN
+
+
+
 ## COMMANDES IMPORTANTS
 
 - vider le cache :
