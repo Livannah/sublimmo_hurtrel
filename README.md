@@ -40,7 +40,7 @@ git pull origin main
 ```
 git push origin main
 ```
-- voir la liste des commit (flèches haut et bas pour navoguer dans la liste, q pour quitter) :
+- voir la liste des commit (flèches haut et bas pour naviguer dans la liste, q pour quitter) :
 ```
 git log
 ```
