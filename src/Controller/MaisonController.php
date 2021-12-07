@@ -70,6 +70,63 @@ class MaisonController extends AbstractController
         ]);
     }
 
+    #[Route('admin/maison/update/{id}', name: 'admin_maison_update')]
+    public function update(MaisonRepository $maisonRepository, int $id, Request $request, ManagerRegistry $managerRegistry)
+    {
+        $house = $maisonRepository->find($id); // récupère la maison grâce à l'id
+        $form = $this->createForm(MaisonType::class, $house); // crée le formulaire prérempli avec la maison récupérée juste avant
+        $form->handleRequest($request); // gestionnaire de requêtes HTTP
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+            // vérifier s'il y a une img2 dans le formulaire
+                // non : garde l'ancienne
+                // oui : récupérer le nom de l'ancienne img2
+                    // s'il y en a une => supprimer
+                    // sinon => ajout
+
+            $infoImg1 = $form['img1']->getData();
+            $nomOldImg1 = $house->getImg1(); // récupère le nom de l'ancienne img1
+            if ($infoImg1 !== null) { // vérifie si il y a une img1 dans le formulaire
+                $cheminOldImg1 = $this->getParameter('house_pictures_directory') . '/' . $nomOldImg1;
+                if (file_exists($cheminOldImg1)) {
+                    unlink($cheminOldImg1); // supprime l'ancienne img1
+                }
+                $nomImg1 = time() . '-1.' . $infoImg1->guessExtension(); // reconstitue le nom de la nouvelle img1
+                $house->setImg1($nomImg1); // définit le nom de l'img1 de l'objet Maison
+                $infoImg1->move($this->getParameter('house_pictures_directory'), $nomImg1); // upload
+            } else {
+                $house->setImg1($nomOldImg1); // re-définit le nom de l'img1 à mettre en bdd
+            }
+
+            $infoImg2 = $form['img2']->getData();
+            $nomOldImg2 = $house->getImg2();
+            if ($infoImg2 !== null) { // on a une img2 dans le formulaire
+                if ($nomOldImg2 !== null) { // on a une img2 en bdd
+                    $cheminOldImg2 = $this->getParameter('house_pictures_directory') . '/' . $nomOldImg2;
+                    if (file_exists($cheminOldImg2)) {
+                        unlink($cheminOldImg2);
+                    }
+                }
+                $nomImg2 = time() . '-2.' . $infoImg2->guessExtension();
+                $house->setImg2($nomImg2);
+                $infoImg2->move($this->getParameter('house_pictures_directory'), $nomImg2);
+            } else { // on a pas d'img2 dans le formulaire
+                $house->setImg2($nomOldImg2);
+            }
+
+            $manager = $managerRegistry->getManager();
+            $manager->persist($house);
+            $manager->flush();
+            return $this->redirectToRoute('admin_maisons');
+        }
+
+        return $this->render('admin/maisonForm.html.twig', [
+            'formulaire' => $form->createView()
+        ]);
+    }
+
     #[Route('admin/maison/delete/{id}', name: 'admin_maison_delete')]
     public function delete(MaisonRepository $maisonRepository, int $id, ManagerRegistry $managerRegistry)
     {

@@ -32,7 +32,7 @@
                     <td>{{ maison.price|number_format(0, ',', ' ') }}</td>
                     <td><img src="{{ asset('img/maison/') ~ maison.img1 }}" alt=""></td>
                     <td>
-                        <a href="#"><i class="fas fa-pen-square text-primary"></i></a>
+                        <a href="{{ path('admin_maison_update', {'id': maison.id}) }}"><i class="fas fa-pen-square text-primary"></i></a>
                         <a href="{{ path('admin_maison_delete', {'id': maison.id}) }}"><i class="fas fa-trash-alt text-danger"></i></a>
                     </td>
                 </tr>
@@ -41,7 +41,7 @@
     </table>
 
     <div class="d-flex justify-content-end my-5">
-        <a href="#" class="btn btn-outline-dark">Ajouter une maison</a>
+        <a href="{{ path('admin_maison_create') }}" class="btn btn-outline-dark">Ajouter une maison</a>
     </div>
 
 {% endblock %}
