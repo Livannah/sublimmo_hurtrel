@@ -131,7 +131,15 @@ class MaisonController extends AbstractController
     public function delete(MaisonRepository $maisonRepository, int $id, ManagerRegistry $managerRegistry)
     {
         $house = $maisonRepository->find($id);
-        throw new \Exception('TODO: gérer la suppression des images du dossier img');
+        // throw new \Exception('TODO: gérer la suppression des images du dossier img');
+        $img1 = $this->getParameter('house_pictures_directory') . '/' . $house->getImg1();
+        $img2 = $this->getParameter('house_pictures_directory') . '/' . $house->getImg2();
+        if ($house->getImg1() && file_exists($img1)) {
+            unlink($img1);
+        }
+        if ($house->getImg2() && file_exists($img2)) {
+            unlink($img2);
+        }
         $manager = $managerRegistry->getManager();
         $manager->remove($house);
         $manager->flush();
