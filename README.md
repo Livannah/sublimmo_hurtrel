@@ -183,6 +183,25 @@ php bin/console make:auth
 - { path: ^/admin, roles: ROLE_ADMIN }
 ```
 
+## REGISTER
+
+- créer le fromulaire d'inscription :
+```
+php bin/console make:registration-form
+```
+- installer Rollerworks :
+```
+composer require rollerworks/password-strength-bundle
+```
+- dans le formulaire :
+```
+use Rollerworks\Component\PasswordStrength\Validator\Constraints\PasswordStrength;
+```
+```
+new PasswordStrength
+```
+- y ajouter les contraintes souhaitées
+
 ## COMMANDES IMPORTANTS
 
 - vider le cache :
