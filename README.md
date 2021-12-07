@@ -172,7 +172,16 @@ php bin/console make:user
 - migration
 - créer "l'authentification" :
 ```
-
+php bin/console make:auth
+```
+- 1
+- Authenticator
+- SecurityController
+- yes
+- dans config/packages/security.yaml, décommenter :
+```
+- { path: ^/admin, roles: ROLE_ADMIN }
+```
 
 ## COMMANDES IMPORTANTS
 
